@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Celebration" },
+      { name: "description", content: "Sweet Spot Designs is an aesthetic website designed to attract customers and boost sales for a bakery and food business." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Celebration" },
+      { property: "og:description", content: "Sweet Spot Designs is an aesthetic website designed to attract customers and boost sales for a bakery and food business." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Celebration" },
+      { name: "twitter:description", content: "Sweet Spot Designs is an aesthetic website designed to attract customers and boost sales for a bakery and food business." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/35a0f8be-8a59-464a-b0a9-d76d9743de8d/id-preview-f6cec0d9--42cb0918-e1fe-45e3-b52c-6bc61d3681c2.lovable.app-1778747726739.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/35a0f8be-8a59-464a-b0a9-d76d9743de8d/id-preview-f6cec0d9--42cb0918-e1fe-45e3-b52c-6bc61d3681c2.lovable.app-1778747726739.png" },
     ],
     links: [
       {
