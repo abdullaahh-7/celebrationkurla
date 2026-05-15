@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import heroCake from "@/assets/hero-cake.jpg";
 import pastries from "@/assets/pastries.jpg";
 import noodles from "@/assets/noodles.jpg";
@@ -44,6 +44,7 @@ function Nav() {
       <nav className="hidden md:flex items-center gap-10 text-sm text-cream/90">
         <a href="#specialties" className="hover:text-gold transition">Specialties</a>
         <a href="#menu" className="hover:text-gold transition">Menu</a>
+        <Link to="/cake-shop-kurla" className="hover:text-gold transition">Cake Shop in Kurla</Link>
         <a href="#reviews" className="hover:text-gold transition">Reviews</a>
         <a href="#visit" className="hover:text-gold transition">Visit</a>
       </nav>
