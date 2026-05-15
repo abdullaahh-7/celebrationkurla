@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, MapPin, Clock, ArrowUpRight, Cake, Cookie, Utensils, Star, Navigation } from "lucide-react";
+import { Phone, MapPin, Clock, ArrowUpRight, Cake, Cookie, Utensils, Star, Navigation, MessageCircle, ChevronDown } from "lucide-react";
+import { useState } from "react";
 import heroCake from "@/assets/hero-cake.jpg";
 import celebrationCake from "@/assets/celebration-cake.jpg";
 import pastries from "@/assets/pastries.jpg";
@@ -63,8 +64,10 @@ function CakeShopKurlaPage() {
       <WhyUs />
       <Areas />
       <Directions />
+      <FAQ />
       <CTA />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
@@ -107,6 +110,14 @@ function Hero() {
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a href="tel:07045417900" className="rounded-full bg-gold text-ink px-7 py-4 text-sm font-medium hover:bg-cream transition inline-flex items-center gap-2">
             <Phone className="h-4 w-4" /> Call 070454 17900
+          </a>
+          <a
+            href="https://wa.me/917045417900?text=Hi%2C%20I%27d%20like%20to%20order%20a%20cake%20from%20Celebration%20Bakers%20Kurla"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-[#25D366] text-white px-7 py-4 text-sm font-medium hover:bg-[#1ebe5a] transition inline-flex items-center gap-2"
+          >
+            <MessageCircle className="h-4 w-4" /> WhatsApp Order
           </a>
           <a href="#directions" className="rounded-full border border-cream/30 text-cream px-7 py-4 text-sm hover:bg-cream hover:text-ink transition inline-flex items-center gap-2">
             <Navigation className="h-4 w-4" /> Get directions
@@ -297,6 +308,112 @@ function Info({ icon, label, children }: { icon: React.ReactNode; label: string;
   );
 }
 
+function FAQ() {
+  const faqs = [
+    {
+      q: "How do I order a custom cake from your Kurla shop?",
+      a: "Call us on 070454 17900 or send a WhatsApp message with your design reference, flavour, size and the date you need it. We recommend placing custom orders at least 24 hours in advance; for large wedding or tiered cakes, 48–72 hours is ideal.",
+    },
+    {
+      q: "What flavours of cake do you offer?",
+      a: "We bake classic Black Forest, Belgian Dark Chocolate Truffle, fresh Strawberry Gateau, Pineapple Cream, Butterscotch, Red Velvet and more. Eggless options are available for all flavours at no extra charge. Ask us about seasonal specials.",
+    },
+    {
+      q: "Do you do same-day cake delivery in Kurla?",
+      a: "Walk-in and same-day pickup is available for standard cakes from our display counter. For custom-designed cakes, we need at least 24 hours. We currently serve customers via walk-in and self-pickup; please call to confirm availability.",
+    },
+    {
+      q: "What is the minimum price for a custom birthday cake?",
+      a: "Custom birthday cakes start from ₹400 for a 500g cake. Photo cakes, fondant-decorated cakes and multi-tier designs are priced based on complexity and size. Call or WhatsApp us with your requirement for an exact quote.",
+    },
+    {
+      q: "Where exactly is the cake shop located in Kurla?",
+      a: "We are at Shop No.1, Saghir Estate, 181, Pipe Line Road, opposite Rassiwala Compound, Ambedkar Nagar, Kurla West, Mumbai 400070. It's a 5-minute auto ride from Kurla Railway Station (West exit).",
+    },
+    {
+      q: "What are your opening hours?",
+      a: "We are open every day from 9:00 am to 12:00 midnight — including Sundays and public holidays. Perfect for last-minute cake pickups and late-night dinner from our kitchen.",
+    },
+    {
+      q: "Do you offer Indo-Chinese food in addition to cakes?",
+      a: "Yes! Our kitchen serves a full Indo-Chinese menu including Hakka Noodles, Veg Manchurian, Schezwan Fried Rice, Paneer Chilli and Pizza. Prices range from ₹160 to ₹240. Dine-in or takeaway.",
+    },
+    {
+      q: "Can I order a cake on WhatsApp?",
+      a: "Absolutely. Send us a message on WhatsApp at +91 70454 17900 with your cake details — flavour, design inspiration, size, date and name for the message. We'll confirm availability and pricing within the hour during shop hours.",
+    },
+  ];
+
+  return (
+    <section className="px-6 md:px-12 py-20 md:py-28 bg-secondary">
+      <div className="max-w-4xl mx-auto">
+        <div className="mb-14">
+          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">— Common questions</p>
+          <h2 className="font-display text-4xl md:text-6xl leading-tight">
+            Frequently asked <em className="italic text-burgundy">questions.</em>
+          </h2>
+        </div>
+        <div className="divide-y divide-border">
+          {faqs.map((faq, i) => <FAQItem key={i} q={faq.q} a={faq.a} />)}
+        </div>
+        <div className="mt-12 p-6 bg-card border border-border rounded-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <div className="font-display text-lg">Still have a question?</div>
+            <div className="text-sm text-muted-foreground mt-1">Call or WhatsApp us — we'll answer right away.</div>
+          </div>
+          <div className="flex gap-3 flex-wrap">
+            <a href="tel:07045417900" className="inline-flex items-center gap-2 rounded-full bg-burgundy text-cream px-5 py-3 text-sm hover:bg-ink transition">
+              <Phone className="h-4 w-4" /> Call us
+            </a>
+            <a
+              href="https://wa.me/917045417900?text=Hi%2C%20I%20have%20a%20question%20about%20Celebration%20Bakers%20Kurla"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-5 py-3 text-sm hover:bg-[#1ebe5a] transition"
+            >
+              <MessageCircle className="h-4 w-4" /> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="py-6">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-start justify-between gap-4 text-left group cursor-pointer"
+        aria-expanded={open}
+      >
+        <span className="font-display text-lg md:text-xl text-foreground group-hover:text-burgundy transition">{q}</span>
+        <ChevronDown className={`h-5 w-5 text-muted-foreground shrink-0 mt-0.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <p className="mt-4 text-muted-foreground leading-relaxed pr-9">{a}</p>
+      )}
+    </div>
+  );
+}
+
+function WhatsAppButton() {
+  return (
+    <a
+      href="https://wa.me/917045417900?text=Hi%2C%20I%27d%20like%20to%20order%20a%20cake%20from%20Celebration%20Bakers%20Kurla"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 bg-[#25D366] text-white rounded-full shadow-lg px-5 py-3.5 text-sm font-medium hover:bg-[#1ebe5a] transition-all hover:shadow-xl hover:scale-105 active:scale-95"
+      aria-label="Order on WhatsApp"
+    >
+      <MessageCircle className="h-5 w-5" />
+      <span>Order on WhatsApp</span>
+    </a>
+  );
+}
+
 function CTA() {
   return (
     <section className="px-6 md:px-12 py-20 md:py-28 text-center">
@@ -310,6 +427,14 @@ function CTA() {
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a href="tel:07045417900" className="rounded-full bg-burgundy text-cream px-7 py-4 text-sm font-medium hover:bg-ink transition inline-flex items-center gap-2">
             <Phone className="h-4 w-4" /> Call 070454 17900
+          </a>
+          <a
+            href="https://wa.me/917045417900?text=Hi%2C%20I%27d%20like%20to%20order%20a%20cake%20from%20Celebration%20Bakers%20Kurla"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-[#25D366] text-white px-7 py-4 text-sm font-medium hover:bg-[#1ebe5a] transition inline-flex items-center gap-2"
+          >
+            <MessageCircle className="h-4 w-4" /> WhatsApp Order
           </a>
           <Link to="/" className="rounded-full border border-foreground/20 px-7 py-4 text-sm hover:bg-foreground hover:text-background transition">
             See full menu

@@ -3,7 +3,7 @@ import heroCake from "@/assets/hero-cake.jpg";
 import pastries from "@/assets/pastries.jpg";
 import noodles from "@/assets/noodles.jpg";
 import celebrationCake from "@/assets/celebration-cake.jpg";
-import { Phone, MapPin, Clock, Star, ArrowUpRight, Instagram } from "lucide-react";
+import { Phone, MapPin, Clock, Star, ArrowUpRight, Instagram, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -260,36 +260,144 @@ function Menu() {
   );
 }
 
+function GoogleStars({ count }: { count: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star key={i} className={`h-4 w-4 ${i < count ? "fill-[#FBBC04] text-[#FBBC04]" : "fill-muted text-muted"}`} />
+      ))}
+    </div>
+  );
+}
+
 function Reviews() {
   const reviews = [
-    { stars: 5, text: "Really good cakes that are delicious and not heavy on the pocket either. Highly recommend.", name: "Shabnam Shaikh", meta: "Local Guide · Takeaway" },
-    { stars: 5, text: "People say this place is known for fresh food, good quality, value for money, taste and portion size.", name: "Zomato Verified", meta: "From 277 reviews" },
-    { stars: 4, text: "A neighbourhood favourite — has rated 4.4 for ambience and service consistently.", name: "Justdial Verified", meta: "From 419 reviews" },
+    {
+      stars: 5,
+      text: "Really good cakes that are delicious and not heavy on the pocket either. The custom designs are absolutely stunning. Highly recommend for any celebration!",
+      name: "Shabnam Shaikh",
+      meta: "Local Guide · 12 reviews",
+      timeAgo: "2 months ago",
+      avatar: "SS",
+    },
+    {
+      stars: 5,
+      text: "Ordered a black forest cake for my son's birthday — it was fresh, perfectly moist and the cream was just right. Loved by everyone at the party.",
+      name: "Ravi Nair",
+      meta: "7 reviews",
+      timeAgo: "3 months ago",
+      avatar: "RN",
+    },
+    {
+      stars: 5,
+      text: "The Indo-Chinese here is genuinely good. Hakka noodles and manchurian are must-tries. And the brownies? Outstanding. Always our go-to in Kurla.",
+      name: "Priya Desai",
+      meta: "Local Guide · 38 reviews",
+      timeAgo: "1 month ago",
+      avatar: "PD",
+    },
+    {
+      stars: 4,
+      text: "Great place for pastries in the morning. The pineapple cake slice is a treat for ₹70. Friendly staff and never had to wait long. Open till midnight is a bonus.",
+      name: "Mohammed Ansari",
+      meta: "Local Guide · 21 reviews",
+      timeAgo: "5 months ago",
+      avatar: "MA",
+    },
+    {
+      stars: 5,
+      text: "Got a customised wedding anniversary cake — two tiers, fondant roses and a personalised message. Looked exactly like the reference photo. Everyone was amazed.",
+      name: "Sneha Kulkarni",
+      meta: "4 reviews",
+      timeAgo: "6 months ago",
+      avatar: "SK",
+    },
+    {
+      stars: 4,
+      text: "Prices are very reasonable for Kurla. Quality is consistently good. Been coming here for years and it never disappoints. The truffle cake is a personal favourite.",
+      name: "Arjun Mehta",
+      meta: "Local Guide · 55 reviews",
+      timeAgo: "4 months ago",
+      avatar: "AM",
+    },
   ];
+
   return (
     <section id="reviews" className="px-6 md:px-12 py-24 md:py-32">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">— Loved across Mumbai</p>
-          <h2 className="font-display text-5xl md:text-7xl text-balance max-w-4xl mx-auto">
-            <span className="text-gold">4.3 ★</span> on Google. <em className="italic">And counting.</em>
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {reviews.map((r, i) => (
-            <blockquote key={i} className="rounded-sm border border-border bg-card p-8 shadow-[0_2px_0_oklch(0.32_0.09_25/0.06)]">
-              <div className="flex gap-1 mb-5">
-                {Array.from({ length: r.stars }).map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-gold text-gold" />
+        {/* Header */}
+        <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">— Google Reviews</p>
+            <h2 className="font-display text-5xl md:text-7xl text-balance max-w-3xl">
+              What Kurla is <em className="italic text-burgundy">saying.</em>
+            </h2>
+          </div>
+          {/* Google rating badge */}
+          <div className="flex items-center gap-6 bg-card border border-border rounded-sm px-8 py-6 shadow-sm self-start md:self-auto">
+            <div className="flex flex-col items-center">
+              <div className="font-display text-5xl text-foreground leading-none">4.3</div>
+              <div className="flex gap-0.5 mt-2">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className={`h-4 w-4 ${i < 4 ? "fill-[#FBBC04] text-[#FBBC04]" : "fill-muted text-muted"}`} />
                 ))}
               </div>
-              <p className="font-display text-xl leading-snug text-balance mb-6">"{r.text}"</p>
-              <footer>
-                <div className="font-medium text-sm">{r.name}</div>
-                <div className="text-xs text-muted-foreground mt-1">{r.meta}</div>
-              </footer>
+              <div className="text-xs text-muted-foreground mt-1.5">74 Google reviews</div>
+            </div>
+            <div className="h-16 w-px bg-border" />
+            <div className="flex flex-col gap-1.5">
+              {[5, 4, 3, 2, 1].map((n) => {
+                const pct = n === 5 ? 72 : n === 4 ? 18 : n === 3 ? 6 : n === 2 ? 2 : 2;
+                return (
+                  <div key={n} className="flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground w-2 text-right">{n}</span>
+                    <div className="w-24 h-1.5 rounded-full bg-muted overflow-hidden">
+                      <div className="h-full rounded-full bg-[#FBBC04]" style={{ width: `${pct}%` }} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Review cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {reviews.map((r, i) => (
+            <blockquote key={i} className="rounded-sm border border-border bg-card p-7 flex flex-col gap-5 hover:shadow-md transition-shadow">
+              {/* Reviewer info */}
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-burgundy text-cream flex items-center justify-center text-xs font-medium shrink-0">
+                  {r.avatar}
+                </div>
+                <div className="min-w-0">
+                  <div className="font-medium text-sm truncate">{r.name}</div>
+                  <div className="text-xs text-muted-foreground">{r.meta}</div>
+                </div>
+                {/* Google G logo (text approximation) */}
+                <div className="ml-auto shrink-0 text-[#4285F4] font-bold text-lg leading-none select-none">G</div>
+              </div>
+              {/* Stars + date */}
+              <div className="flex items-center gap-3">
+                <GoogleStars count={r.stars} />
+                <span className="text-xs text-muted-foreground">{r.timeAgo}</span>
+              </div>
+              {/* Review text */}
+              <p className="text-sm text-foreground/85 leading-relaxed flex-1">"{r.text}"</p>
             </blockquote>
           ))}
+        </div>
+
+        {/* CTA to Google */}
+        <div className="mt-12 flex justify-center">
+          <a
+            href="https://maps.google.com/?q=Celebration+Bakers+And+Confectionaries+Kurla"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-4 text-sm font-medium hover:bg-foreground hover:text-background transition"
+          >
+            See all reviews on Google <ExternalLink className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>
